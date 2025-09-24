@@ -10,6 +10,9 @@ import { Suspense, useState } from 'react'
     const res = await fetch('/players.json')
     return res.json()
   }
+
+    // async await diya fetch korle aikhane age oi function k call korte hobe na hole error deba
+
 const playerPromise = fetchPlayers();
 
 function App() {
@@ -19,8 +22,11 @@ function App() {
 
   // availableBalance ar jonno state
   const [availableBalance, setAvailableBalance] = useState(2000000)
-  
-  // async await diya fetch korle aikhane age oi function k call korte hobe na hole error deba
+
+  // selected players state
+  const [purchasedPlayers, setPurchasedPlayers] = useState([]);
+  // console.log(purchasedPlayers);
+
   
 
   return (
@@ -42,15 +48,11 @@ function App() {
    
    {
     toggle === true? <Suspense fallback = {<span className="loading loading-spinner loading-xl"></span>}>
-    <AvailablePlayers playerPromise ={playerPromise}  setAvailableBalance={setAvailableBalance} availableBalance={availableBalance} ></AvailablePlayers>
-  </Suspense>:<SelectedPlayers></SelectedPlayers>
+    <AvailablePlayers playerPromise ={playerPromise}  setAvailableBalance={setAvailableBalance} availableBalance={availableBalance} purchasedPlayers={purchasedPlayers} setPurchasedPlayers={setPurchasedPlayers} ></AvailablePlayers>
+  </Suspense>:<SelectedPlayers purchasedPlayers={purchasedPlayers}></SelectedPlayers>
    }
 
   
-  
-
-
-
   </>
   )
 }

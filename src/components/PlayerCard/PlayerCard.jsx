@@ -4,7 +4,7 @@ import flagImg from '../../assets/report1.png'
 
 
 
-const PlayerCard = ({player,setAvailableBalance,availableBalance}) => {
+const PlayerCard = ({player,setAvailableBalance,availableBalance, setPurchasedPlayers, purchasedPlayers}) => {
   // chose player ar jonno usestate
   const [isSelected, setIsSelected] = useState(false);
 
@@ -20,6 +20,8 @@ const PlayerCard = ({player,setAvailableBalance,availableBalance}) => {
    }
     setIsSelected(true)
          setAvailableBalance(availableBalance - playerPrice);
+
+      setPurchasedPlayers([...purchasedPlayers, playerData]) ; 
   }
 
 
